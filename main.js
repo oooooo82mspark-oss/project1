@@ -23,6 +23,10 @@ class StockCalculator extends HTMLElement {
         --shadow-color-dark: rgba(0, 0, 0, 0.1);
       }
       
+      .api-section.hidden {
+        display: none;
+      }
+      
       .calculator-wrapper {
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
@@ -223,7 +227,7 @@ class StockCalculator extends HTMLElement {
       <div class="calculator-wrapper">
         <h1 class="calculator-title">주식 물타기 계산기</h1>
         
-        <fieldset class="api-section">
+        <fieldset class="api-section hidden">
           <legend>현재가 실시간 조회</legend>
           <div class="form-grid">
             <div class="form-group">
