@@ -1,1 +1,47 @@
-/* Add styles here */
+:root {
+  --background-color: #eef2f7;
+  --primary-color: #0052ff;
+  --text-color: #1a1a1a;
+}
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top for better view on long pages */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+#app {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+stock-calculator {
+  display: block;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+}
