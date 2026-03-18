@@ -9,6 +9,11 @@ animate();
 function init() {
     // Canvas
     const canvas = document.querySelector('#bg');
+    if (!canvas) {
+        console.error('Canvas element #bg not found!');
+        return; // Prevent further errors if canvas is null
+    }
+    console.log('Canvas element found:', canvas);
 
     // Scene
     scene = new THREE.Scene();
@@ -21,11 +26,15 @@ function init() {
     // Renderer
     renderer = new THREE.WebGLRenderer({
         canvas: canvas,
-        alpha: true, 
+        alpha: true,
     });
+    if (!renderer) {
+        console.error('Three.js Renderer failed to initialize!');
+        return; // Prevent further errors
+    }
+    console.log('Three.js Renderer initialized:', renderer);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
     // Particles
     const particlesGeometry = new THREE.BufferGeometry();
     const particlesCnt = 500;

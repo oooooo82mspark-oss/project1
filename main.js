@@ -342,7 +342,7 @@ class StockCalculator extends HTMLElement {
       const response = await fetch(url);
       const data = await response.json();
 
-      if (data && data['Global Quote'] && data['Global Quote']['05. price']) {
+      if (data && data['Global Quote'] && Object.keys(data['Global Quote']).length > 0 && data['Global Quote']['05. price']) {
         const price = parseFloat(data['Global Quote']['05. price']);
         purchasePriceInput.value = price;
         
@@ -353,6 +353,10 @@ class StockCalculator extends HTMLElement {
         statusEl.textContent = `현재가: ${price.toLocaleString()}원`;
         statusEl.style.color = 'var(--success-color)';
         this.updateInputDisplays();
+      } else if (data && data['Global Quote'] && Object.keys(data['Global Quote']).length === 0) {
+          statusEl.textContent = '종목을 찾을 수 없거나 현재가 데이터가 없습니다.';
+          statusEl.style.color = 'var(--danger-color)';
+          console.error('Alpha Vantage API: Global Quote object is empty.', data);
       } else if (data && data['Note']) {
           statusEl.textContent = 'API 호출 빈도가 너무 높습니다. 잠시 후 시도하세요.';
           statusEl.style.color = 'var(--danger-color)';
